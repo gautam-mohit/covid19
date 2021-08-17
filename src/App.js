@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Active from "./components/pages/Active";
+import Death from "./components/pages/Death";
+import Recovered from "./components/pages/Recovered";
+import LineGraph from "./components/Graph/LineGraph";
+import Statewise from "./components/Statewise/Statewise";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        <div>
+          <div className="main-heading">
+            <h1>Covid19 Tracker India</h1>
+          </div>
+            <Statewise></Statewise>
+        </div>
+
+        <Switch>
+          <Route path="/" exact component={Active}></Route>
+          <Route path="/death" exact component={Death}></Route>
+          <Route path="/recovered" exact component={Recovered}></Route>
+        </Switch>
+
+        <LineGraph />
+      </BrowserRouter>
     </div>
   );
 }
-
 export default App;
